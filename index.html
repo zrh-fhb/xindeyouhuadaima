@@ -42,20 +42,20 @@
 
             // 复制完成后自动跳转到淘宝
             setTimeout(function() {
-                // 判断是否为 iOS 设备
+                // 检测是否是 iOS 设备
                 var isIos = /iphone|ipod|ipad|mac/i.test(navigator.userAgent.toLowerCase());
 
-                // 设置深度链接
-                var url = "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=" + encodeURIComponent(window.location.href);
+                // 设置淘宝的深度链接
+                var taobaoUrl = "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=" + encodeURIComponent(window.location.href);
                 
-                // 如果是 iOS，跳转到淘宝
-                if (isIos) {
-                    window.location.href = url;
-                } else {
-                    // 对于其他设备，直接跳转到淘宝网页
-                    window.location.href = "https://m.taobao.com";
-                }
-            }, 1500);
+                // 跳转到淘宝应用
+                window.location.href = taobaoUrl;
+
+                // 为了避免跳转失败的情况，设置一个备用的延时跳转到淘宝页面，帮助触发深度链接
+                setTimeout(function() {
+                    window.location.href = taobaoUrl;
+                }, 1500);  // 延时1.5秒
+            }, 1500);  // 显示复制成功提示后，延时1.5秒进行跳转
         });
 
         clipboard.on('error', function(e) {
