@@ -1,66 +1,55 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <title>天天开红包</title>
-    <style>
-        body {
-            background-color: #f6f6f6;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .keycopy {
-            background: #ff4400;
-            color: white;
-            font-size: 16px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .message {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
-        }
-    </style>
-</head>
-<body>
-    <h1>领取淘宝优惠券</h1>
-    <button id="copyBtn" class="keycopy" data-clipboard-text="￥NCHPVwW2Q7m￥/ HU7405">复制口令</button>
-    <div id="message" class="message"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-    <script>
-        var clipboard = new ClipboardJS('#copyBtn');
-        
-        clipboard.on('success', function(e) {
-            // 显示复制成功的提示
-            document.getElementById('message').innerText = "口令已复制成功！请打开手机 [ 淘宝app ] 查看";
-
-            // 复制完成后自动跳转到淘宝
-            setTimeout(function() {
-                // 检测是否是 iOS 设备
-                var isIos = /iphone|ipod|ipad|mac/i.test(navigator.userAgent.toLowerCase());
-
-                // 设置淘宝的深度链接
-                var taobaoUrl = "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=" + encodeURIComponent(window.location.href);
-                
-                // 跳转到淘宝应用
-                window.location.href = taobaoUrl;
-
-                // 为了避免跳转失败的情况，设置一个备用的延时跳转到淘宝页面，帮助触发深度链接
-                setTimeout(function() {
-                    window.location.href = taobaoUrl;
-                }, 1500);  // 延时1.5秒
-            }, 1500);  // 显示复制成功提示后，延时1.5秒进行跳转
-        });
-
-        clipboard.on('error', function(e) {
-            document.getElementById('message').innerText = "复制失败，请手动复制口令。";
-        });
-    </script>
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" /> 
+  <meta name="format-detection" content="telephone=no,email=no,adress=no" /> 
+  <meta name="apple-mobile-web-app-capable" content="yes" /> 
+  <meta http-equiv="Cache-Control" content="no-siteapp" /> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" /> 
+  <style>
+    body {
+      background-color: #f6f6f6;
+      font-family: Hiragino Sans GB,Arial,Helvetica,sans-serif;
+      font-size: 14px;
+      margin: 0;
+    }
+    .keycopy {
+      background: #ff4400;
+      display: block;
+      line-height: 40px;
+      text-align: center;
+      color: #ff002d;
+      border: none;
+      font-size: 16px;
+      width: 200px;
+      margin: 0 auto;
+      margin-top: 15%;
+      font-family: "Microsoft Yahei";
+      font-weight: bold;
+      border-radius: 5px;
+    }
+  </style>
+  <title>天天开红包</title>
+ </head> 
+ <body> 
+  <div id="module_index_1" class="module" data-module="details" data-mode="details-mode9"> 
+    <div class="details-mode9" style="margin-top:0px;background:#c30f9c"> 
+      <img class="details-back" src="https://cdn2.6-y.cn/cps/cshb.png" />
+      <img id="bt" class="keycopy" src="https://crm.shenquanwaimai.com/resource/image/crmapi/shangou2.png" style="width:60%;position:absolute;top:700px;left:50%;transform:translateX(-50%)" data-clipboard-text="￥NCHPVwW2Q7m￥/ HU7405"/>
+    </div>
+  </div> 
+  <script src="/js/axios.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+  <script>
+    var clipboard = new ClipboardJS('.keycopy');
+    clipboard.on('success', function(e) {
+      alert('口令复制成功! 请打开手机 [ 淘宝app ] 查看');
+      // 自动跳转到淘宝APP
+      window.location.href = "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=" + encodeURIComponent(window.location.href);
+    });
+    clipboard.on('error', function(e) {
+      alert('复制失败');
+    });
+  </script> 
+ </body>
 </html>
